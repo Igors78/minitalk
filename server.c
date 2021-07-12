@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 17:34:01 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/11 20:57:44 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:50:18 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ static void	sig_handl(int signum, siginfo_t *info, void *unused)
 	if (signum == SIGUSR1)
 	{
 		result += counter;
-		counter /= 2;
+		counter = counter >> 1;
 		if (kill(info->si_pid, SIGUSR1) == -1)
 			error("Signal error. Restart server\n");
 	}
 	else if (signum == SIGUSR2)
 	{
-		counter /= 2;
+		counter = counter >> 1;
 		if (kill(info->si_pid, SIGUSR1) == -1)
 			error("Signal error. Restart server\n");
 	}
@@ -68,11 +68,13 @@ int	main(void)
 
 	sa_sig.sa_flags = SA_SIGINFO;
 	sa_sig.sa_sigaction = sig_handl;
-	sigaction(SIGUSR1, &sa_sig, NULL);
-	sigaction(SIGUSR2, &sa_sig, NULL);
-	ft_putstr_fd("PID : ", 1);
+	if (sigaction(SIGUSR1, &sa_sig, NULL) == -1)
+		error("SIGACTION ERROR\nRestart server\n");
+	if (sigaction(SIGUSR2, &sa_sig, NULL) == -1)
+		error("SIGACTION ERROR\nRestart server\n");
+	write(1, "PID : ", 6);
 	ft_putnbr_fd(getpid(), 1);
-	ft_putstr_fd("\n", 1);
+	write(1, "\n", 1);
 	while (1)
 		pause();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:32:39 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/11 20:47:28 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/12 17:19:49 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ int	main(int argc, char **argv)
 {
 	if (argc != 3 || ft_atoi(argv[1]) < 1)
 	{
-		ft_putstr_fd("Incorrect arguments\n", 1);
+		write(1, "Incorrect arguments\n", 20);
 		return (1);
 	}
-	signal(SIGUSR1, one);
-	signal(SIGUSR2, zero);
-	ft_putstr_fd("PID : ", 1);
+	if (signal(SIGUSR1, one) == SIG_ERR)
+		error("Can't catch signal\n");
+	if (signal(SIGUSR2, zero) == SIG_ERR)
+		error("Can't catch signal\n");
+	write(1, "PID : ", 6);
 	ft_putnbr_fd(getpid(), 1);
-	ft_putstr_fd("\n", 1);
+	write(1, "\n", 1);
 	telegram(ft_atoi(argv[1]), argv[2]);
 	while (1)
 		pause();
