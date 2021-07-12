@@ -6,16 +6,16 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 17:34:01 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/12 16:50:18 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/12 17:41:03 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	straddchar(int res, int pid)
+static void	straddchar(short res, short pid)
 {
-	static char	msg[10000];
-	static int	i = 0;
+	static char		msg[10000];
+	static short	i = 0;
 
 	if (res)
 	{
@@ -35,9 +35,9 @@ static void	straddchar(int res, int pid)
 
 static void	sig_handl(int signum, siginfo_t *info, void *unused)
 {
-	static int	result = 0;
-	static int	counter = 128;
-	static int	bit = 0;
+	static short	result = 0;
+	static short	counter = 128;
+	static short	bit = 0;
 
 	(void)unused;
 	if (signum == SIGUSR1)
@@ -76,6 +76,6 @@ int	main(void)
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n", 1);
 	while (1)
-		pause();
+		sleep(1);
 	return (0);
 }

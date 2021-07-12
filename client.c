@@ -6,13 +6,13 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:32:39 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/12 17:19:49 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/12 17:42:55 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	check_handles(char *new, int *mask, int *i, int pid)
+static void	check_handles(char *new, short *mask, short *i, short pid)
 {
 	if (new[(*i)])
 	{
@@ -38,11 +38,11 @@ static void	check_handles(char *new, int *mask, int *i, int pid)
 	}
 }
 
-static void	telegram(int id, char *msg)
+static void	telegram(short id, char *msg)
 {
-	static int		mask = 128;
-	static int		pid = 0;
-	static int		i = 0;
+	static short	mask = 128;
+	static short	pid = 0;
+	static short	i = 0;
 	static char		new[10000];
 
 	if (id)
@@ -83,6 +83,6 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	telegram(ft_atoi(argv[1]), argv[2]);
 	while (1)
-		pause();
+		sleep(1);
 	return (0);
 }

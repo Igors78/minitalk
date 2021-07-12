@@ -6,15 +6,15 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 19:06:22 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/11 15:17:31 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/12 17:41:35 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	terminate(int id)
+void	terminate(short id)
 {
-	static int	i = 0;
+	static short	i = 0;
 
 	if (i < 8)
 	{

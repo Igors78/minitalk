@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 17:41:43 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/11 20:47:13 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/12 17:41:15 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "includes/libft.h"
 # include <signal.h>
 
-void	terminate(int pid);
+void	terminate(short pid);
 void	error(char *str);
 
 #endif
