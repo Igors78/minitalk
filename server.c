@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 17:34:01 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/13 12:03:53 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:31:34 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	straddchar(short res, short pid)
 	else
 	{
 		ft_printf("%s\nReceived from: %d\n", msg, pid);
-		ft_memset(msg, '\0', ft_strlen(msg));
+		ft_memset(msg, '\0', 10000);
 		i = 0;
 		if (kill(pid, SIGUSR2) == -1)
 			error("Signal lost server to client. If no message, retry\n");
@@ -55,9 +55,9 @@ static void	sig_handl(int signum, siginfo_t *info, void *unused)
 	}
 	if (++bit == 8)
 	{
-		straddchar(result, info->si_pid);
 		bit = 0;
 		counter = 128;
+		straddchar(result, info->si_pid);
 		result = 0;
 	}
 }
@@ -76,6 +76,6 @@ int	main(void)
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n", 1);
 	while (1)
-		sleep(1);
+		usleep(1000);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:32:39 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/13 12:04:07 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:26:37 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_handles(char *new, short *mask, short *i, short pid)
 {
 	if (new[(*i)])
 	{
-		if (*mask == 0)
+		if (*mask < 1)
 		{
 			(*i)++;
 			*mask = 128;
@@ -69,7 +69,7 @@ static void	zero(int signum)
 
 int	main(int argc, char **argv)
 {
-	if (argc != 3 || ft_atoi(argv[1]) < 1)
+	if (argc != 3 || ft_atoi(argv[1]) < 1 || !(argv[2]))
 	{
 		write(1, "Incorrect arguments\n", 20);
 		return (1);
@@ -83,6 +83,6 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	telegram(ft_atoi(argv[1]), argv[2]);
 	while (1)
-		sleep(1);
+		usleep(1000);
 	return (0);
 }
