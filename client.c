@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:32:39 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/13 16:26:37 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:09:16 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	telegram(ft_atoi(argv[1]), argv[2]);
 	while (1)
-		usleep(1000);
+		sleep(1);
 	return (0);
 }
