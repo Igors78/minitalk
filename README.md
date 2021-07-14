@@ -15,18 +15,19 @@ If you need reliable delivery then you need a different communication mechanism.
 - Run `make` in cloned repository
 - Run `./server`
 - Server PID will be displayed
-- Run client in following format `./client <SERVER PID> <STRING TO TRANSMIT>
 - Don't interrupt server, let it run
 
 ## Usage
 
-- Run client in separate terminal window following format `./client <SERVER PID> <STRING TO TRANSMIT>`
+- Run client in separate terminal window in following format `./client <SERVER PID> <STRING TO TRANSMIT>`
 - Look for your string in server window
 - When finished `kill -9 <SERVER PID>` or CTRL^C in server terminal
 
 ## More info on this project in subject.pdf
 
-## Built with
+## Test strings examples in test.txt
+
+## Built with love and
 
 - C
 
@@ -50,6 +51,7 @@ Give a ⭐️ if you like this project!
 
 - 42 Wolfsburg
 - CodeVault: [Code Vault](https://www.youtube.com/watch?v=jF-1eFhyz1U&t=18s)
+- T.Khirianov: [YT](https://www.youtube.com/channel/UCQfwKTJdCmiA6cXAY0PNRJw)
 
 ## 📝 License
 
