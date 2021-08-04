@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:32:39 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/13 18:09:16 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/08/04 16:51:52 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,36 @@ static void	telegram(short id, char *msg)
 		terminate(pid);
 }
 
-static void	one(int signum)
+static void	sig_handl(int signum, siginfo_t *info, void *unused)
 {
-	(void)signum;
-	telegram(0, 0);
-}
-
-static void	zero(int signum)
-{
-	(void)signum;
-	ft_putstr_fd(GREEN "Delivered\n" RESET, 1);
-	exit(EXIT_SUCCESS);
+	(void)unused;
+	(void)info;
+	if (signum == SIGUSR1)
+	{
+		telegram(0, 0);
+	}
+	else if (signum == SIGUSR2)
+	{
+		ft_putstr_fd(GREEN "Delivered\n" RESET, 1);
+		exit(EXIT_SUCCESS);
+	}
 }
 
 int	main(int argc, char **argv)
 {
+	struct sigaction	sa_sig;
+
+	sa_sig.sa_flags = SA_SIGINFO;
+	sa_sig.sa_sigaction = sig_handl;
 	if (argc != 3 || ft_atoi(argv[1]) < 1 || !(argv[2]))
 	{
 		write(1, "Incorrect arguments\n", 20);
 		return (1);
 	}
-	if (signal(SIGUSR1, one) == SIG_ERR)
-		error("Can't catch signal\n");
-	if (signal(SIGUSR2, zero) == SIG_ERR)
-		error("Can't catch signal\n");
+	if (sigaction(SIGUSR1, &sa_sig, NULL) == -1)
+		error("SIGACTION ERROR\nRestart server\n");
+	if (sigaction(SIGUSR2, &sa_sig, NULL) == -1)
+		error("SIGACTION ERROR\nRestart server\n");
 	write(1, "PID : ", 6);
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n", 1);
