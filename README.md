@@ -53,6 +53,15 @@ Give a ⭐️ if you like this project!
 - CodeVault: [Code Vault](https://www.youtube.com/watch?v=jF-1eFhyz1U&t=18s)
 - T.Khirianov: [YT](https://www.youtube.com/channel/UCQfwKTJdCmiA6cXAY0PNRJw)
 
+![image](page1.jpg)
+![image](page2.jpg)
+![image](page3.jpg)
+![image](page4.jpg)
+![image](page5.jpg)
+![image](page6.jpg)
+![image](page7.jpg)
+![image](page8.jpg)
+
 ## 📝 License
 
 This project is [UNLicense](./LICENSE) licensed.
